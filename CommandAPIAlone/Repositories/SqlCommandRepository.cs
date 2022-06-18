@@ -23,9 +23,13 @@ namespace CommandAPIAlone.Repositories
             await _context.Commands.AddAsync(cmd);
         }
 
-        public Task DeleteCommandAsync(Command cmd)
+        public void DeleteCommand(Command cmd)
         {
-            throw new NotImplementedException();
+            if (cmd == null)
+            {
+                throw new NullReferenceException(nameof(cmd));
+            }
+            _context.Commands.Remove(cmd);
         }
 
         public async Task<IEnumerable<Command>> GetAllCommandsAsync()
@@ -43,9 +47,9 @@ namespace CommandAPIAlone.Repositories
             return (_context.SaveChangesAsync().Result > 0);
         }
 
-        public Task UpdateCommandAsync(Command cmd)
+        public async Task UpdateCommandAsync(Command cmd)
         {
-            throw new NotImplementedException();
+           // entityframework elvégzi nekünk
         }
     }
 }

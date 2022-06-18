@@ -10,7 +10,7 @@ namespace CommandAPIAlone.Repositories
             throw new NotImplementedException();
         }
 
-        public Task DeleteCommandAsync(Command cmd)
+        public void DeleteCommand(Command cmd)
         {
             throw new NotImplementedException();
         }

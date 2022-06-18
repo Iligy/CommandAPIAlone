@@ -9,6 +9,6 @@ namespace CommandAPIAlone.Interfaces
         Task<Command> GetCommandByIdAsync(int id);
         Task CreateCommandAsync(Command cmd);
         Task UpdateCommandAsync(Command cmd);
-        Task DeleteCommandAsync(Command cmd);
+        void DeleteCommand(Command cmd);
     }
 }

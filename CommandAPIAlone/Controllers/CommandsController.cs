@@ -53,5 +53,38 @@ namespace CommandAPIAlone.Controllers
 
             return CreatedAtRoute(nameof(GetCommandById), new { Id = commandReadDto.Id }, commandReadDto);
         }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateCommand(int id, CommandUpdateDto commandUpdateDto) 
+        {
+
+            var commandToUpdate = await _repository.GetCommandByIdAsync(id);
+
+            if (commandToUpdate == null) 
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(commandUpdateDto, commandToUpdate);
+            await _repository.UpdateCommandAsync(commandToUpdate);
+            await _repository.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteCommand(int id)
+        {
+            var commandToDelete = await _repository.GetCommandByIdAsync(id);
+
+            if (commandToDelete == null) 
+            {
+                return NotFound();
+            }
+
+            _repository.DeleteCommand(commandToDelete);
+            await _repository.SaveChangesAsync();
+            return NoContent();
+        }
     }
 }
