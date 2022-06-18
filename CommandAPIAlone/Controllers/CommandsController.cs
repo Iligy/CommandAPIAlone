@@ -1,4 +1,5 @@
-﻿using CommandAPIAlone.Models;
+﻿using CommandAPIAlone.Interfaces;
+using CommandAPIAlone.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,35 +9,33 @@ namespace CommandAPIAlone.Controllers
     [ApiController]
     public class CommandsController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult<IEnumerable<Command>> GetAllCommands() 
-        {
-            var commands = new List<Command>()
-            {
-                new Command()
-                {
-                    Id = 1,
-                    Description = "Create migration",
-                    HowTo = "add-migration",
-                    Platform = ".NET Core EF Package Manager"
-                },
-                new Command()
-                {
-                    Id = 2,
-                    Description = "Remove migration",
-                    HowTo = "remove-migration",
-                    Platform = ".NET Core EF Package Manager"
-                },
-                new Command()
-                {
-                    Id = 3,
-                    Description = "Apply migration",
-                    HowTo = "update-database",
-                    Platform = ".NET Core EF Package Manager"
-                },
-            };
 
-            return commands;
+        private readonly ICommandRepository _repository;
+
+        public CommandsController(ICommandRepository repository)
+        {
+            _repository = repository;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Command>>> GetAllCommands() 
+        {
+            IEnumerable<Command> commands = await _repository.GetAllCommandsAsync();
+
+            return Ok(commands);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Command>> GetCommandById(int id)
+        {
+            Command command = await _repository.GetCommandByIdAsync(id);
+
+            if (command == null) 
+            {
+                return NotFound();
+            }
+
+            return Ok(command);
         }
     }
 }
