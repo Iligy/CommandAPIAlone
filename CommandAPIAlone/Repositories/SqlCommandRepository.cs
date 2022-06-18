@@ -14,9 +14,13 @@ namespace CommandAPIAlone.Repositories
             _context = context;
         }
 
-        public Task CreateCommandAsync(Command cmd)
+        public async Task CreateCommandAsync(Command cmd)
         {
-            throw new NotImplementedException();
+            if (cmd == null) 
+            {
+                throw new NullReferenceException(nameof(cmd));
+            }
+            await _context.Commands.AddAsync(cmd);
         }
 
         public Task DeleteCommandAsync(Command cmd)
@@ -34,9 +38,9 @@ namespace CommandAPIAlone.Repositories
             return await _context.Commands.FirstOrDefaultAsync(c => c.Id == id);
         }
 
-        public Task<bool> SaveChangesAsync()
+        public async Task<bool> SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return (_context.SaveChangesAsync().Result > 0);
         }
 
         public Task UpdateCommandAsync(Command cmd)

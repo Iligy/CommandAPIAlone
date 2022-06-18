@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "ZfrGIAaao5IzBW40Z5bNhYX+skC+QQ7yW3HaHYkVeecd3Ivzn393y1F9ZuOvYypz3UfzMly8GTji3VYz/9qOuw==",
+  "dgSpecHash": "ElT+ZDu5iVG5zTelxQDfHg2G1iJmdtDDRhZgoaXQCbmKwBr8mdiA9ODOMWlbaGNwvy/qttJSKUkX8m4bjEjm6w==",
   "success": true,
   "projectFilePath": "D:\\Projects\\Dotnetprojects\\CommandAPIAlone\\CommandAPIAlone\\CommandAPIAloneTests\\CommandAPIAloneTests.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Patrik\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
+    "C:\\Users\\Patrik\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\Patrik\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\Patrik\\.nuget\\packages\\microsoft.codecoverage\\17.1.0\\microsoft.codecoverage.17.1.0.nupkg.sha512",
-    "C:\\Users\\Patrik\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",
+    "C:\\Users\\Patrik\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Patrik\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.6\\microsoft.entityframeworkcore.6.0.6.nupkg.sha512",
     "C:\\Users\\Patrik\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.6\\microsoft.entityframeworkcore.abstractions.6.0.6.nupkg.sha512",
     "C:\\Users\\Patrik\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\6.0.6\\microsoft.entityframeworkcore.analyzers.6.0.6.nupkg.sha512",
