@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>CommandApiAlone_b0bf2465-f590-4bac-a7ee-1bc79009a457</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

@@ -8,11 +8,16 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Npgsql;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var connString = new NpgsqlConnectionStringBuilder();
+connString.ConnectionString = builder.Configuration.GetConnectionString("PostgreSqlConnection");
+connString.Username = builder.Configuration["UserId"];
+connString.Password = builder.Configuration["Password"];
 
 // Adding Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -59,7 +64,7 @@ builder.Services.AddSwaggerGen(option =>
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContext<MainDbContext>(options =>
-            options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSqlConnection")));
+            options.UseNpgsql(connString.ConnectionString));
 builder.Services.AddScoped<ICommandRepository, SqlCommandRepository>();
 builder.Services.AddScoped<IPracticeModelRepository, PracticeModelRepository>();
 builder.Services.AddScoped<IUserVerificationRepository, UserVerificationRepository>();
