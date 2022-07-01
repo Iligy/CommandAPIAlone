@@ -1,14 +1,17 @@
 ﻿using AutoMapper;
-using CommandAPIAlone.Dtos;
+using CommandAPIAlone.Dtos.Command;
 using CommandAPIAlone.Interfaces;
 using CommandAPIAlone.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CommandAPIAlone.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CommandsController : ControllerBase
     {
 
@@ -32,7 +35,7 @@ namespace CommandAPIAlone.Controllers
         [HttpGet("{id}", Name = "GetCommandById")]
         public async Task<ActionResult<CommandReadDto>> GetCommandById(int id)
         {
-            Command command = await _repository.GetCommandByIdAsync(id);
+            Command? command = await _repository.GetCommandByIdAsync(id);
 
             if (command == null) 
             {
@@ -70,6 +73,40 @@ namespace CommandAPIAlone.Controllers
             await _repository.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<ActionResult> ParticalCommandUpdate(int id, JsonPatchDocument<CommandUpdateDto> patchDoc) 
+        {
+            if (patchDoc != null)
+            {
+                var commandFromRepo = await _repository.GetCommandByIdAsync(id);
+
+                if (commandFromRepo == null) 
+                {
+                    return NotFound();
+                }
+
+                var commandToPatch = _mapper.Map<CommandUpdateDto>(commandFromRepo);
+
+                patchDoc.ApplyTo(commandToPatch, ModelState);
+
+                if (!TryValidateModel(commandToPatch))
+                {
+                    return BadRequest(ModelState);
+                }
+
+                _mapper.Map(commandToPatch, commandFromRepo);
+
+                await _repository.UpdateCommandAsync(commandFromRepo);
+                await _repository.SaveChangesAsync();
+
+                return NoContent();
+            }
+            else 
+            {
+                return BadRequest();
+            }
         }
 
         [HttpDelete("{id}")]

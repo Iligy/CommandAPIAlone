@@ -37,14 +37,14 @@ namespace CommandAPIAlone.Repositories
             return await _context.Commands.ToListAsync();
         }
 
-        public async Task<Command> GetCommandByIdAsync(int id)
+        public async Task<Command?> GetCommandByIdAsync(int id)
         {
             return await _context.Commands.FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<bool> SaveChangesAsync()
         {
-            return (_context.SaveChangesAsync().Result > 0);
+            return (await _context.SaveChangesAsync() > 0);
         }
 
         public async Task UpdateCommandAsync(Command cmd)

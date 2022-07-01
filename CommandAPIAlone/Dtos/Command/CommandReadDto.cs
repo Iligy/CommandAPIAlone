@@ -1,4 +1,4 @@
-﻿namespace CommandAPIAlone.Dtos
+﻿namespace CommandAPIAlone.Dtos.Command
 {
     public class CommandReadDto
     {

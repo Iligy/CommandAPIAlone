@@ -10,6 +10,8 @@ namespace CommandAPIAlone.Data
 
         }
 
-        public DbSet<Command> Commands { get; set; }
+        public DbSet<Command> Commands => Set<Command>();
+        public DbSet<PracticeModel> PracticeModels => Set<PracticeModel>();
+        public DbSet<User> Users => Set<User>();
     }
 }

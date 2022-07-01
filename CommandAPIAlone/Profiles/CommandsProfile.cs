@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CommandAPIAlone.Dtos;
+using CommandAPIAlone.Dtos.Command;
 using CommandAPIAlone.Models;
 
 namespace CommandAPIAlone.Profiles
@@ -12,6 +12,7 @@ namespace CommandAPIAlone.Profiles
             CreateMap<CommandCreateDto, Command>();
             CreateMap<Command, CommandReadDto>();
             CreateMap<CommandUpdateDto, Command>();
+            CreateMap<Command, CommandUpdateDto>();
         }
     }
 }

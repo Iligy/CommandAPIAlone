@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CommandAPIAlone.Dtos
+namespace CommandAPIAlone.Dtos.Command
 {
-    public class CommandUpdateDto
+    public class CommandCreateDto
     {
         [Required]
         [MaxLength(250)]
